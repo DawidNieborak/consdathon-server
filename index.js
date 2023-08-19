@@ -9,11 +9,20 @@ const port = process.env.PORT || 3000;
 let players = [];
 let teams = [];
 
+function resetGame() {
+    players = []
+    teams = []
+}
+
 io.on('connection', (socket) => {
     console.log('a player connected');
     console.log("Connected: " + players.length);
 
     socket.on('message', (message) => {
+        if(message && message.type === 'reset') {
+            resetGame();
+        }
+
         if (message && message.type === 'joinTeam') {
             console.log(message.team.id);
             let teamId = message.team.id;
