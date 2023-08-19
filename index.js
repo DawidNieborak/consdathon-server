@@ -4,6 +4,8 @@ const io = require('socket.io')(http, {
     cors: {origin: "*"}
 });
 
+const port = process.env.PORT || 3000;
+
 let players = [];
 let teams = [];
 
@@ -66,4 +68,4 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(6969, () => console.log('listening on http://localhost:6969'));
+http.listen(port, () => console.log(`listening on port ${port}`));
