@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
             const team = message.team;
             if (teams[team.id]) {
                 teams[team.id].score += 10;
-                if (teams[team.id].score >= 20) {
+                if (teams[team.id].score >= 100) {
                     io.emit('endGame', {msg: "Koniec gry.", team: teams[team.id], teamId: team.id});
                 }
                 io.emit('teamScoreUpdate', {teams, teamId: team.id});
